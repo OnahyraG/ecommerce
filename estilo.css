@@ -4,7 +4,8 @@ body, html {
     font: 400 15px/1.8 "Lato", sans-serif;
     color: #777;
   }
-  
+
+
   .bgimg-1, .bgimg-2, .bgimg-3 {
     position: relative;
     opacity: 0.65;
@@ -18,7 +19,7 @@ body, html {
     height: 50%;
   }
   
-  .reseccio {
+  .caption {
     position: absolute;
     left: 0;
     top: 50%;
