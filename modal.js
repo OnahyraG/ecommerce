@@ -1,56 +1,40 @@
-//const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
-//const botonAbrir = document.getElementById('boton-carrito')
-//const botonCerrar = document.getElementById('carritoCerrar')
-//const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
+articulosCarrito = [];
 
-//botonAbrir.addEventListener('click', ()=>{
-  //  contenedorModal.classList.toggle('modal-active')
-//})
-//botonCerrar.addEventListener('click', ()=>{
- //   contenedorModal.classList.toggle('modal-active')
-//})
-//contenedorModal.addEventListener('click', ()=>{
-  //  botonCerrar.click()
-//})
-//modalCarrito.addEventListener('click', (event)=>{
-  //  event.stopPropagation()
-//})
+const body = document.body;
+const vaciarCarrito = document.querySelector('#vaciar-carrito');
+const contenedorCarrito = document.querySelector('#lista-carrito');
+
+let resultado = document.getElementById('resultado');
+
+let titulo = document.createElement('h1');
+titulo.setAttribute('class', 'text-center mt-5');
+body.prepend(titulo);
 
 
+let input = document.getElementById('input');
+let boton = document.querySelector('#btn');
+const carritoWrapper = document.getElementById("carrito-wrapper");
+const carritoContainer = document.getElementById("carrito-container");
 
 
+carritoWrapper.addEventListener("mouseover",() =>{
+    carritoContainer.style.display = "block";
+});
 
+carritoWrapper.addEventListener("mouseleave",() =>{
+    carritoContainer.style.display = "none";
+});
 
+boton.addEventListener('click', mostrar)
 
+document.addEventListener("DOMContentLoaded",() => {
+    crearTarjetasHTML(productos)
+    articulosCarrito = JSON.parse( localStorage.getItem('carrito') ) || []
+    carritoHTML()
+});
 
+vaciarCarrito.addEventListener('click', () => {
+    articulosCarrito = []; 
+    carritoHTML(); 
+})
 
-
-
-
-
-
-
-
-
-
-
-
-
-// const carritoAbrir = document.getElementById('boton-carrito');
-// const carritoCerrar = document.getElementById('carritoCerrar');
-
-// const contenedorModal = document.getElementsByClassName('modal-contenedor')[0]
-// const modalCarrito = document.getElementsByClassName('modal-carrito')[0]
-
-// carritoAbrir.addEventListener('click', ()=> {
-//     contenedorModal.classList.toggle('modal-active')
-// })
-// carritoCerrar.addEventListener('click', ()=> {
-//     contenedorModal.classList.toggle('modal-active')
-// })
-// modalCarrito.addEventListener('click',(e)=>{
-//     e.stopPropagation()
-// })
-// contenedorModal.addEventListener('click', ()=>{
-//     carritoCerrar.click()
-// })

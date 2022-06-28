@@ -5,6 +5,7 @@ let total = 0;
 
 
 
+
 function renderizarProductos(){
 
     let tienda = document.getElementById('tienda');
@@ -52,6 +53,8 @@ function agregarProductoAlCarrito(id){
     
 
     }
+
+
     
     renderizarCarrito();
 }
@@ -92,6 +95,7 @@ function calcularTotal(){
     });
     
     console.log(total);
+    
 
 }
 
@@ -118,3 +122,14 @@ function filtroPrecio(){
 
 }
 
+
+/// Confirmacion
+
+const inputNombre = document.querySelector('#input-nombre')
+const inputTelefono = document.querySelector('#input-telefono')
+const btnEnviar = document.querySelector('#btn-enviar')
+
+btnEnviar.addEventListener('click', () => {
+    console.log(inputNombre.value)
+    console.log(inputTelefono.value)
+})
