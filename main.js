@@ -3,7 +3,7 @@ const carrito = [];
 
 let total = 0;
 
-
+const BBDDJSON = JSON.stringify(BBDD)
 
 
 function renderizarProductos(){
@@ -59,6 +59,7 @@ function agregarProductoAlCarrito(id){
     renderizarCarrito();
 }
 
+  
 function renderizarCarrito(){
 
     let carritoHTML = document.getElementById('carrito');
@@ -132,4 +133,10 @@ const btnEnviar = document.querySelector('#btn-enviar')
 btnEnviar.addEventListener('click', () => {
     console.log(inputNombre.value)
     console.log(inputTelefono.value)
+    
 })
+
+
+localStorage.getItem('nombre', inputNombre)
+localStorage.getItem('telefono', inputTelefono)
+localStorage.setItem('servicio', BBDDJSON)

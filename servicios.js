@@ -1,4 +1,4 @@
-let BBDD = [
+const BBDD = [
     {
         "id": 1,
         "nombre": "belleza de manos",
