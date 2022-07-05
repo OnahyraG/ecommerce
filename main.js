@@ -1,10 +1,11 @@
 
-const carrito = [];
-
-let total = 0;
+const carrito = JSON.parse(localStorage.getItem('carrito')) || []
+;
 
 const BBDDJSON = JSON.stringify(BBDD)
 
+
+// producto en html
 
 function renderizarProductos(){
 
@@ -35,6 +36,8 @@ function renderizarProductos(){
 }
 renderizarProductos();
 
+//agregar al carrito
+
 function agregarProductoAlCarrito(id){
 
     let producto = BBDD.find(producto => producto.id == id);
@@ -50,54 +53,55 @@ function agregarProductoAlCarrito(id){
         
         producto.cantidad = 1;
         carrito.push(producto);
+        console.log(carrito);
     
 
     }
 
-
-    
     renderizarCarrito();
+    calcularTotal();
 }
 
-  
+//carrito de compras  
+
 function renderizarCarrito(){
 
     let carritoHTML = document.getElementById('carrito');
 
-    html = '';
+    let html = '';
+
 
     carrito.forEach((producto, id)=>{
         
         html += `
-        <div class="col-12 col-md-4 mb-5 d-flex justify-content-center">
-            <div class="card text-dark" style="width: 18rem;">
-                <img class="card-img-top" src="${producto.img}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${producto.nombre}</h5>
-                    <p>${producto.precio}.Pesos</p>
-                    <p>Cantidad: ${producto.cantidad}</p>
-                    <button class="btn btn-danger" onClick="eliminarProductoDelCarrito(${id})">Eliminar</button>
-                </div>
-            </div>
-        </div>
+        <tr>
+            
+            <td>${producto.nombre}</td>
+            <td>${producto.precio}</td>
+            <td>${producto.cantidad}</td>
+            <button class="btn btn-primary" onClick="eliminarProductoDelCarrito(${id})">X</button>
+        </tr>
         `
     })
 
     carritoHTML.innerHTML = html;
 
-    calcularTotal();
 }
 
 function calcularTotal(){
 
+    let total = 0;
+
+    let totalFinal = document.getElementById('total');
+
     carrito.forEach((producto) => {
         
+
         total += producto.precio * producto.cantidad;
     });
-    
-    console.log(total);
-    
 
+    totalFinal.innerHTML = `<h3>Total: ${total}Pesos</h3>`;
+    
 }
 
 
@@ -111,8 +115,10 @@ const eliminarProductoDelCarrito = (id)=> {
         
         carrito.splice(id, 1);
     }
-    
+
     renderizarCarrito();
+    calcularTotal();
+
 }
 
 
@@ -124,19 +130,19 @@ function filtroPrecio(){
 }
 
 
-/// Confirmacion
+/// formulario
 
 const inputNombre = document.querySelector('#input-nombre')
 const inputTelefono = document.querySelector('#input-telefono')
 const btnEnviar = document.querySelector('#btn-enviar')
 
 btnEnviar.addEventListener('click', () => {
-    console.log(inputNombre.value)
-    console.log(inputTelefono.value)
+   
+    localStorage.setItem('nombre', inputNombre.value)
+    localStorage.setItem('telefono', inputTelefono.value)
     
 })
 
 
-localStorage.getItem('nombre', inputNombre)
-localStorage.getItem('telefono', inputTelefono)
+
 localStorage.setItem('servicio', BBDDJSON)
