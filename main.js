@@ -25,20 +25,26 @@ function renderizarProductos(){
                 <h5 class="card-title">${servis.nombre}</h5>
                 <p class="card-text">${servis.descripcion}</p>
                 <p>${servis.precio}.Pesos</p>
-                <button class="btn btn-primary" onClick="agregarProductoAlCarrito(${servis.id})">Añadir al carrito</button>
+                <button id="agregar" class="btn btn-primary"  onClick="agregarProductoAlCarrito(${servis.id})">Añadir al carrito</button>
             </div>
         </div>
         </div>
+        
         `
         tienda.innerHTML += productoHTML
     });
 
 }
+
+        
+
 renderizarProductos();
 
 //agregar al carrito
 
 function agregarProductoAlCarrito(id){
+
+    const btnToast = document.querySelector('#agregar');
 
     let producto = BBDD.find(producto => producto.id == id);
 
@@ -57,6 +63,18 @@ function agregarProductoAlCarrito(id){
     
 
     }
+            
+    
+
+    btnToast.addEventListener('click', () => {
+   
+        Toastify({
+            text: "servis en carrito",
+            duration: 3000,
+            position: 'right'
+        }).showToast();
+    })
+    
 
     renderizarCarrito();
     calcularTotal();
@@ -140,6 +158,14 @@ btnEnviar.addEventListener('click', () => {
    
     localStorage.setItem('nombre', inputNombre.value)
     localStorage.setItem('telefono', inputTelefono.value)
+
+    Swal.fire({
+        title: 'Perfecto',
+        text: 'Se envio la confirmacion !',
+        icon: 'success',
+        confirmButtonText: 'ok'
+
+    })
     
 })
 
