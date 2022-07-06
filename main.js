@@ -25,7 +25,7 @@ function renderizarProductos(){
                 <h5 class="card-title">${servis.nombre}</h5>
                 <p class="card-text">${servis.descripcion}</p>
                 <p>${servis.precio}.Pesos</p>
-                <button id="agregar" class="btn btn-primary"  onClick="agregarProductoAlCarrito(${servis.id})">Añadir al carrito</button>
+                <button  class="btn btn-primary"  onClick="agregarProductoAlCarrito(${servis.id})">Añadir al carrito</button>
             </div>
         </div>
         </div>
@@ -44,11 +44,16 @@ renderizarProductos();
 
 function agregarProductoAlCarrito(id){
 
-    const btnToast = document.querySelector('#agregar');
 
     let producto = BBDD.find(producto => producto.id == id);
 
     let productoEnCarrito = carrito.find(producto => producto.id == id);
+
+    Toastify({
+        text: "servis en carrito",
+        duration: 2000,
+        position: 'right'
+    }).showToast();
 
     if(productoEnCarrito){
         
@@ -65,15 +70,6 @@ function agregarProductoAlCarrito(id){
     }
             
     
-
-    btnToast.addEventListener('click', () => {
-   
-        Toastify({
-            text: "servis en carrito",
-            duration: 3000,
-            position: 'right'
-        }).showToast();
-    })
     
 
     renderizarCarrito();
@@ -128,6 +124,12 @@ const eliminarProductoDelCarrito = (id)=> {
     console.log(carrito[id].cantidad);
     carrito[id].cantidad--;
     console.log(carrito[id].cantidad); 
+
+    Toastify({
+        text: "se elimino el servis",
+        duration: 2000,
+        gravity: 'bottom'
+    }).showToast();
 
     if(carrito[id].cantidad == 0){
         
