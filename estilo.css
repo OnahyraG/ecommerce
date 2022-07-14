@@ -25,23 +25,7 @@ h1 {
   font-weight: 700;
   font-size: 50px;
 }
-#boton-carrito {
-  border: none;
-  color: royalblue;
-  font-size: 40px;
-  background-color: white;
-  border-radius: 50%;
-  padding: 10px 20px;
-  transition: all .3s;
-}
-#boton-carrito:hover {
-  cursor: pointer;
-  color: white;
-  background-color: royalblue;
-}
-#boton-carrito:focus {
-  outline: none;
-}
+
 
 
 

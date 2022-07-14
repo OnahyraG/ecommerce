@@ -174,3 +174,25 @@ btnEnviar.addEventListener('click', () => {
 
 
 localStorage.setItem('servicio', BBDDJSON)
+
+
+//comentarios
+
+
+const container = document.querySelector('#app')
+
+let id = 1
+
+const comentarios = async () => {
+    const resp = await fetch(`https://jsonplaceholder.typicode.com/comments/${id}`)
+    const data = await resp.json()
+
+    const {email, body} = data
+
+    container.innerHTML = `
+                    <h3>${email}</h3>
+                    <h5>${body}</h5>
+            `
+}
+
+comentarios()
