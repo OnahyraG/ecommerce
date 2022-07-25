@@ -181,7 +181,7 @@ localStorage.setItem('servicio', BBDDJSON)
 
 const container = document.querySelector('#app')
 
-let id = 1
+const id = [1, 2, 3, 4, 5, 6]
 
 const comentarios = async () => {
     const resp = await fetch(`https://jsonplaceholder.typicode.com/comments/${id}`)
